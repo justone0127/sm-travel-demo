@@ -311,7 +311,7 @@ Kiali 접속 -> 서비스 -> 네임스페이스 : travel-agency 선택 -> hotels
 > Delete Traffic Routing이 활성화 되지 않은 경우에는 Request Routing을 선택하여 Fault Injection을 주입합니다.
 
 Add HTTP Abort 설정 > Delay Percentage : 10 > HTTP Status Code > 503 > 생성
-<img src="images/08_503_error_injection_new.png))" title="100px" alt="503 error injection"> <br>
+<img src="images/08_503_error_injection_new.png" title="100px" alt="503 error injection"> <br>
 
 그래프에서 travels 서비스에서 hotels 서비스로 가는 Request에서 503 에러가 발생됨을 추적할 수 있습니다.
 <img src="images/09_error_dashboard_new.png" title="100px" alt="Error Dashboard"> <br>
