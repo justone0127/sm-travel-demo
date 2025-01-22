@@ -26,7 +26,7 @@ Red Hat OpenShift Service Mesh를 설치하려면 다음 Operator를 이 순서�
 
 - Red Hat OpenShift Service Mesh
 
-  ![01_operator_install_new](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\01_operator_install_new.png)
+  <img src="images/01_operator_install_new.png" title="100px" alt="서비스메시 오퍼레이터"> <br>
 
 **1-2) Creating the ServiceMeshControlPlane**
 
