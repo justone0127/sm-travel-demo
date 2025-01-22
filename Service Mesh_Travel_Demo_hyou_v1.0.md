@@ -256,55 +256,45 @@ Kiali 접속 -> 서비스 선택 -> travel agency 네임스페이스 선택 -> t
 - 두번째 규칙 : Request Matching 선택
 
   headers -> portal / exact -> viaggi.it 입력 -> Add Match 선택 > 선택된 Matching에 viaggi.it만 선택되어야 합니다. 다른 Matching은 클릭하여 선택을 해제합니다. 
-  <img src="images/27_viaggi_request_mathing.png" title="100px" alt="viaggit_request_matching"> <br>
+  <img src="images/27_viaggi_request_mathing.png" title="100px" alt="viaggi_request_matching"> <br>
   Route To -> travels-v2 100%
-  <img src="images/28_viaggi_request_routing.png" title="100px" alt="viaggit_request_routing"> <br>
+  <img src="images/28_viaggi_request_routing.png" title="100px" alt="viaggi_request_routing"> <br>
 
 - 세번째 규칙 : Request Matching 선택
 
-  headers -> portal / exact -> voyages.fr 입력 -> Add Match 선택 > 선택된 Matching에 voyages.fr만 선택되어야 합니다. 다른 Matching은 클릭하여 선택을 해제합니다. 
-
-  ![29_voyages_request_matching](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\29_voyages_request_matching.png)
+  headers -> portal / exact -> voyages.fr 입력 -> Add Match 선택 > 선택된 Matching에 voyages.fr만 선택되어야 합니다. 다른 Matching은 클릭하여 선택을 해제합니다.
+  <img src="images/29_voyages_request_matching.png" title="100px" alt="voyages_request_matching"> <br>
   
   Route To -> travels-v3 100%
-  
-  ![30_voyages_request_routing](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\30_voyages_request_routing.png)
+  <img src="images/30_voyages_request_routing.png" title="100px" alt="voyages_request_routing"> <br>
 
 전체 생성된 규칙을 확인하고, Preview 버튼을 선택합니다.
-
-![31_preview](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\31_preview.png)
+<img src="images/31_preview.png" title="100px" alt="preview"> <br>
 
 Update 버튼을 선택하여 반영합니다.
-
-![32_update](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\32_update.png)
+<img src="images/32_update.png" title="100px" alt="update"> <br>
 
 Workloads -> 네임스페이스 : travel agency 선택 -> travels-v2 선택 -> Inbound Metrics 선택하면 유사한 패턴 확인 할 수 있음
-
-![33_viaggi_inbound_metrics](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\33_viaggi_inbound_metrics.png)
+<img src="images/33_viaggi_inbound_metrics.png)" title="100px" alt="viaggi_inbound_metrics"> <br>
 
 **4-2) Traffic 가중치에 의한 Routing Rule 생성**
 
 생성하기 전에 위에서 생성한 Traffic Routing은 삭제하고 진행합니다.
-
-![35_delete_traffic_routing](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\35_delete_traffic_routing.png)
+<img src="images/35_delete_traffic_routing.png)" title="100px" alt="delete traffic"> <br>
 
 Kiali 접속-> 서비스 선택 -> travel-agency 네임스페이스 선택 -> travels 선택 -> 오른쪽 끝에 Actions -> Request Routing 선택 -> Add Route Rule 생성
-
-![36_add_routing_rule](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\36_add_routing_rule.png)
+<img src="images/36_add_routing_rule.png)" title="100px" alt="add routing rule"> <br>
 
 > 기본적으로 33%, 33%, 33%로 Route Rule이 생성됩니다. 
 
 비율을 변경하기 위해서는 Route To를 선택하여 비율을 조정할 수 있습니다. 설정을 한 후에는 Preview > Create 버튼을 눌러서 설정을 반영합니다.
-
-![37_traffic_routing_rule](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\37_traffic_routing_rule.png)
+<img src="images/37_traffic_routing_rule.png)" title="100px" alt="traffic routing rule"> <br>
 
 ### 5. Fault Injection (장애주입)
 
 Fault Injection 시나리오를 수행하기 위해서는 필요에 따라서 istio 구성은 수정되거나 삭제 됩니다.
 
 시나리오에서는 호텔 서비스에 장애를 주입하여 어떻게 반응하는지 관찰하여 Travels Demo 애플리케이션의 복원력을 테스트하는 방법을 보여드리겠습니다.
-
-
 
 **5-1) Fault Injection 주입**
 
@@ -321,26 +311,20 @@ Kiali 접속 -> 서비스 -> 네임스페이스 : travel-agency 선택 -> hotels
 > Delete Traffic Routing이 활성화 되지 않은 경우에는 Request Routing을 선택하여 Fault Injection을 주입합니다.
 
 Add HTTP Abort 설정 > Delay Percentage : 10 > HTTP Status Code > 503 > 생성
-
-![08_503_error_injection_new](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\08_503_error_injection_new.png)
+<img src="images/08_503_error_injection_new.png))" title="100px" alt="503 error injection"> <br>
 
 그래프에서 travels 서비스에서 hotels 서비스로 가는 Request에서 503 에러가 발생됨을 추적할 수 있습니다.
-
-![09_error_dashboard_new](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\09_error_dashboard_new.png)
+<img src="images/09_error_dashboard_new.png" title="100px" alt="Error Dashboard"> <br>
 
 에러가 발생한 travels-v1을 선택하여 Details 확인후, 로그에서 에러를 추적합니다. 해당 로그에서 503을 입력하여 검색하면, hotels 서비스에서 503에러가 발생된 것을 확인 할 수 있습니다.
-
-![11_503_proxy_logs](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\11_503_proxy_logs.png)
+<img src="images/11_503_proxy_logs.png" title="100px" alt="503 Proxy Logs"> <br>
 
 Traces 항목에서도 Spans Details를 통해 에러 확인이 가능합니다.
-
-![11_traces_spans_details_new](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\11_traces_spans_details_new.png)
+<img src="images/11_traces_spans_details_new.png" title="100px" alt="Traces spans details"> <br>
 
 ### 6. Circuit Breakers
 
 Circuit Breakers는 장애, 대기 시간 급증 및 기타 유형의 네트워크 문제의 영향을 제한하는 데 사용되는 중요한 기술입니다. 이번 시나리오에서는 동시 요청 및 연결 수를 제한하기 위해 여행 서비스에 Circuit Breaker를 적용해 보도록 하겠습니다.
-
-
 
 특정 부하사항을 대비하여 장애가 발생했을 때 장애가 더 전파되기 전에 사전에 Circuit Breaker를 통해 조치할 수 있습니다.
 
@@ -353,45 +337,36 @@ oc apply -f <(curl -L https://raw.githubusercontent.com/kiali/demos/master/trave
 ```
 
 loadtester의 작업 부하는 50개 동시 연결을 만들려고 합니다. 
-
-![12_circuit_breakers_new](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\12_circuit_breakers_new.png)
+<img src="images/12_circuit_breakers_new.png" title="100px" alt="Circuit Breakers"> <br>
 
 - travles Inbound Metrics
 
   처음에는 비정상적인 상태가 표시되지 않습니다.
-
-  ![13_travel_inbound_metrics_new](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\13_travel_inbound_metrics_new.png)
+  <img src="images/13_travel_inbound_metrics_new.png" title="100px" alt="Travel Inbound Metrics"> <br>
 
 **6-2) Traffic Shifting으로 travles 서비스에 Circuit Breakers 설정 주입**
 
 기존 Routing 설정이 있는 경우 삭제하고 Traffic Shifting 설정을 적용합니다. 적용이 반영되기 전까지는 이전 설정으로 서비스 됩니다.
 
 - Routing 삭제
-
-  ![14_delete_traffic_routing](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\14_delete_traffic_routing.png)
+  <img src="images/14_delete_traffic_routing.png" title="100px" alt="Delete Traffic"> <br>
 
 - Traffic Shifting 생성
 
   Traffic Shifting 버튼을 선택하여 Circuit Breaker 설정을 주입합니다. Preview 버튼을 누르고 Create를 눌러서 설정을 반영합니다.
-
-  ![14_traffic_shifting_circuit_breakers_new](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\14_traffic_shifting_circuit_breakers_new.png)
+  <img src="images/14_traffic_shifting_circuit_breakers_new.png" title="100px" alt="Traffic Shifting Circuit Breakers"> <br>
 
   > Connection Pool 설정은 동시 연결 및 요청 수가 둘 이상인 경우 프록시 사이드카가 요청을 거부함을 나타냅니다.
   >
   > 연속 오류 두 개가 있는 경우 "이상값 감지"는 Connection Pool에서 호스트를 제거합니다.
 
 Graph -> 네임스페이스 -> travel-agency -> loadtester 선택 -> Flag를 확인하여 요청이 Circuit Breaker에 의해 차단 되었는지 확인 가능
-
-![15_loadtester_status_new](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\15_loadtester_status_new.png)
+<img src="images/15_loadtester_status_new.png" title="100px" alt="Loadtester Status"> <br>
 
 `loadtester` Versioned-app Graph에서 travels 서비스의 Circuit Breaker가 일부 연결을 허용하지만 대부분은 실패하는 연결을  볼 수 있습니다. 이러한 연결은 `loadtester`의 proxy에 의해 중지됩니다. "빨리 실패" 패턴은 네트워크 과부하를 방지합니다. 그래프에서 실패한 Edge를 선택하여  Flag 탭을 확인하면 해당 요청이 Circuit Breaker에 의해 차단되었는지 확인할 수 있습니다.
 
-
-
 Workloads -> 네임스페이스 : travel-agency -> loadtester -> Outbound Metrics 선택 -> 요청 볼륨이 줄어든 것을 볼 수 있음
-
-![16_loadtester_outbound_metrics_new](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\16_loadtester_outbound_metrics_new.png)
-
+<img src="images/16_loadtester_outbound_metrics_new.png" title="100px" alt="Loadtester Outbound Metrics"> <br>
 
 
 참고 URL)
