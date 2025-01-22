@@ -275,20 +275,20 @@ Update 버튼을 선택하여 반영합니다.
 <img src="images/32_update.png" title="100px" alt="update"> <br>
 
 Workloads -> 네임스페이스 : travel agency 선택 -> travels-v2 선택 -> Inbound Metrics 선택하면 유사한 패턴 확인 할 수 있음
-<img src="images/33_viaggi_inbound_metrics.png)" title="100px" alt="viaggi_inbound_metrics"> <br>
+<img src="images/33_viaggi_inbound_metrics.png" title="100px" alt="viaggi_inbound_metrics"> <br>
 
 **4-2) Traffic 가중치에 의한 Routing Rule 생성**
 
 생성하기 전에 위에서 생성한 Traffic Routing은 삭제하고 진행합니다.
-<img src="images/35_delete_traffic_routing.png)" title="100px" alt="delete traffic"> <br>
+<img src="images/35_delete_traffic_routing.png" title="100px" alt="delete traffic"> <br>
 
 Kiali 접속-> 서비스 선택 -> travel-agency 네임스페이스 선택 -> travels 선택 -> 오른쪽 끝에 Actions -> Request Routing 선택 -> Add Route Rule 생성
-<img src="images/36_add_routing_rule.png)" title="100px" alt="add routing rule"> <br>
+<img src="images/36_add_routing_rule.png" title="100px" alt="add routing rule"> <br>
 
 > 기본적으로 33%, 33%, 33%로 Route Rule이 생성됩니다. 
 
 비율을 변경하기 위해서는 Route To를 선택하여 비율을 조정할 수 있습니다. 설정을 한 후에는 Preview > Create 버튼을 눌러서 설정을 반영합니다.
-<img src="images/37_traffic_routing_rule.png)" title="100px" alt="traffic routing rule"> <br>
+<img src="images/37_traffic_routing_rule.png" title="100px" alt="traffic routing rule"> <br>
 
 ### 5. Fault Injection (장애주입)
 
