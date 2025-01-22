@@ -53,9 +53,8 @@ Red Hat OpenShift Service Mesh를 설치하려면 다음 Operator를 이 순서�
        - Console 설정 예시
        
          - Proxy > Access Logging > File > Name > `/dev/stdout` 입력
-       
-           ![02_proxylog_settings](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\02_proxylog_settings.png)
-       
+           <img src="images/02_proxylog_settings.png" title="100px" alt="proxy log settings"> <br>
+         
          - 전체 설정 예시
        
            ```yaml
@@ -96,9 +95,7 @@ Red Hat OpenShift Service Mesh를 설치하려면 다음 Operator를 이 순서�
            ```
      
   7. 컨트롤 플레인이 올바르게 설치되었는지 확인하려면 Istio Service Mesh Control Plane 탭을 클릭합니다.
-  
-     ![03_servicemesh_contorl_plane_new](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\03_servicemesh_contorl_plane_new.png)
-
+     <img src="images/03_servicemesh_contorl_plane_new.png" title="100px" alt="서비스메시 컨트롤 플레인"> <br>
 
 **1-3) Creating the Red Hat OpenShift Service Mesh member roll**
 
