@@ -151,9 +151,7 @@ oc new-project travel-control
   ```
 
   또는 콘솔에서 확인 할 수 있습니다.
-
-  ![04_servicemesh_member_roll_new](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\04_servicemesh_member_roll_new.png)
-
+  <img src="images/04_servicemesh_member_roll_new.png" title="100px" alt="서비스메시 멤버 롤"> <br>
 
 **2-2) 애플리케이션 배포**
 
@@ -174,53 +172,49 @@ oc apply -f <(curl -L https://raw.githubusercontent.com/kiali/demos/master/trave
 
 Servicve Mesh Control Plane이 설치된 `istio-system` 프로젝트를 선택하면, 오른쪽 옆에 Kiali, Jaeger를 실행할 수 있는 링크가 확인됩니다. 이를 통해서도 접속이 가능합니다.
 
-![34_kiali_console](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\34_kiali_console.png)
+<img src="images/34_kiali_console.png" title="100px" alt="Kiali Console"> <br>
 
 **2-5) 사이드 카 인젝션 적용**
 
 Kiali 대시 보드 접속 ->  Workloads -> 각 각의 Workloads 선택 -> 오른쪽 끝에 Actions -> Enable Auto InJection 클릭
 
-![05_sidecar_injection_enable_new](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\05_sidecar_injection_enable_new.png)
+<img src="images/05_sidecar_injection_enable_new.png" title="100px" alt="사이드카 인젝션 활성화"> <br>
 
 - 예시)
 
-  하나의 서비스를 예로 적용해본다면, cars-v1 선택 > Actions > Enable Auto Injection 선택 > 해당 설정이 반영 되면서 Pod가 재기동 됩니다. 
+  하나의 서비스를 예로 적용해본다면, cars-v1 선택 > Actions > Enable Auto Injection 선택 > 해당 설정이 반영 되면서 Pod가 재기동 됩니다.
 
-  ![05_sidecar_injection_enable_settings](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\05_sidecar_injection_enable_settings.png)
+  <img src="images/05_sidecar_injection_enable_settings.png" title="100px" alt="사이드카 인젝션 설정"> <br>
 
   반영이 된 이후에는 Details에서 Missing Sidecar 메시지가 사라진 것을 볼 수 있습니다.
 
-  ![05_sidecar_injection_complate](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\05_sidecar_injection_complate.png)
+  <img src="images/05_sidecar_injection_complate.png" title="100px" alt="사이드카 인젝션 설정 완료"> <br>
 
   해당 서비스의 Deployment를 확인해보면 다음과 같이 `sidecar.istio.io/inject: true` 가 labels로 추가된 것을 확인할 수 있습니다.
 
-  ![05_sidecar_injection_labels](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\05_sidecar_injection_labels.png)
+  <img src="images/05_sidecar_injection_labels.png" title="100px" alt="사이드카 인젝션 레이블 확인"> <br>
 
 **2-6) ingressgateway를 통한 route 생성**
 
 - Kiali Console 접속
 
   - Namespace : **travel-control** 선택 > Services > control 선택 > Actions > Request Routing 선택
-  
-    ![21_control_request_routing](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\21_control_request_routing.png)
+    <img src="images/21_control_request_routing.png" title="100px" alt="컨트롤 서비스 리퀘스트 라우팅"> <br>
   
   - Add Route Rule 생성 
-  
-    ![22_create_request_routing](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\22_create_request_routing.png)
+    <img src="images/22_create_request_routing.png" title="100px" alt="컨트롤 서비스 리퀘스트 라우팅 생성"> <br>
   
   - Show Advanced Options를 선택하여 Gateway를 생성합니다.
   
     - Add Gateway 활성화 > Create Gateway > Port 확인 > Gateway Hosts 입력
   
       - Gateway Hosts : `control.travel-control.apps.${CLUSTER_BASE_DOMAIN}`
-  
-        ![23_create_request_routing_02](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\23_create_request_routing_02.png)
+        <img src="images/23_create_request_routing_02.png" title="100px" alt="컨트롤 서비스 리퀘스트 라우팅 생성"> <br>
   
   - 서비스 호출
   
     `istio-system` 네임스페이스의 Networking > Routte를 확인해보면, travel-control Route 주소가 생성된 것을 볼 수 있습니다. 이를 통해 서비스 접속을 확인할 수 있습니다. 페이지가 정상적으로 호출될 경우 아래 화면과 같이 페이지가 보입니다.
-  
-    ![23_travel_apps_pages](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\23_travel_apps_pages.png)
+    <img src="images/23_travel_apps_pages.png" title="100px" alt="애플리케이션 서비스 확인"> <br>
 
 ### 3. 서비스메시 구성요소 설명
 
@@ -236,12 +230,10 @@ Kiali 대시 보드 접속 ->  Workloads -> 각 각의 Workloads 선택 -> 오�
 간단하게 설명 및 시연
 
 **3-3) MSA 애플리케이션 서비스 흐름 추적 관찰**
-
-![06_servicemesh_graph_legend](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\06_servicemesh_graph_legend.png)
+<img src="images/06_servicemesh_graph_legend.png" title="100px" alt="서비스매시 Legend 대시보드"> <br>
 
 - Display에서 Traffic Animation을 선택하면 실시간으로 트래픽의 흐름을 볼 수 있습니다.
-
-  ![24_traffic_animation](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\24_traffic_animation.png)
+  <img src="images/24_traffic_animation.png" title="100px" alt="트래픽 애니메이션"> <br>
 
 ### 4. 트래픽 관리
 
@@ -256,22 +248,17 @@ Kiali 접속 -> 서비스 선택 -> travel agency 네임스페이스 선택 -> t
 - 첫 번째 규칙 : Request Matching 선택
 
   headers -> portal / exact -> travels.uk 입력 -> Add Match 선택
-
-  ![25_travles_uk_match_routing](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\25_travles_uk_match_routing.png)
+  <img src="images/25_travles_uk_match_routing.png" title="100px" alt="travels_uk_match"> <br>
 
   Route To -> travels-v1 100% 
-
-  ![26_travels_uk_request_routing](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\26_travels_uk_request_routing.png)
+  <img src="images/26_travels_uk_request_routing.png" title="100px" alt="travels_uk_request_routing"> <br>
 
 - 두번째 규칙 : Request Matching 선택
 
   headers -> portal / exact -> viaggi.it 입력 -> Add Match 선택 > 선택된 Matching에 viaggi.it만 선택되어야 합니다. 다른 Matching은 클릭하여 선택을 해제합니다. 
-
-  ![27_viaggi_request_mathing](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\27_viaggi_request_mathing.png)
-
+  <img src="images/27_viaggi_request_mathing.png" title="100px" alt="viaggit_request_matching"> <br>
   Route To -> travels-v2 100%
-
-  ![28_viaggi_request_routing](C:\Works\01_자료\01_OCP\2021_SKT_CNF_PoC\Travel_Image\28_viaggi_request_routing.png)
+  <img src="images/28_viaggi_request_routing.png" title="100px" alt="viaggit_request_routing"> <br>
 
 - 세번째 규칙 : Request Matching 선택
 
